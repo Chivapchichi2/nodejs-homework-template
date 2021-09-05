@@ -12,6 +12,8 @@ router.post("/signup", userValidationMiddleware, tryCatchWrapper(ctrl.signup));
 
 router.post("/login", userValidationMiddleware, tryCatchWrapper(ctrl.login));
 
-// router.get("/logout", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.logout));
+router.get("/logout", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.logout));
+
+router.get("/current", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.current));
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const { Contact } = require("../../models");
-const { userJoiSchema } = require("../../models/user");
 
 const addContact = async (req, res, next) => {
   try {
