@@ -16,4 +16,6 @@ router.get("/logout", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.logout
 
 router.get("/current", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.current));
 
+router.patch("/", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.updateCurrentUserSubscription));
+
 module.exports = router;
