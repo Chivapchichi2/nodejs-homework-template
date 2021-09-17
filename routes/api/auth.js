@@ -1,7 +1,7 @@
 const express = require("express");
 
 const { userJoiSchema } = require("../../models/user");
-const { validation, tryCatchWrapper, authenticate } = require("../../middleware");
+const { validation, tryCatchWrapper, authenticate, upload } = require("../../middleware");
 const { auth: ctrl } = require("../../controllers");
 
 const router = express.Router();
@@ -15,5 +15,14 @@ router.post("/login", userValidationMiddleware, tryCatchWrapper(ctrl.login));
 router.get("/logout", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.logout));
 
 router.get("/current", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.current));
+
+router.patch("/", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.updateCurrentUserSubscription));
+
+router.patch(
+  "/avatars",
+  tryCatchWrapper(authenticate),
+  tryCatchWrapper(upload.single("avatarURL")),
+  tryCatchWrapper(ctrl.updateUserAvatar)
+);
 
 module.exports = router;
