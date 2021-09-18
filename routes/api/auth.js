@@ -18,6 +18,10 @@ router.get("/current", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.curre
 
 router.patch("/", tryCatchWrapper(authenticate), tryCatchWrapper(ctrl.updateCurrentUserSubscription));
 
+router.get("/verify/:verificationToken", tryCatchWrapper(ctrl.verifyUserEmail));
+
+router.post("/verify", tryCatchWrapper(ctrl.sendLinkToVerifyUserEmail));
+
 router.patch(
   "/avatars",
   tryCatchWrapper(authenticate),
